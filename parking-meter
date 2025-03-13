@@ -1,0 +1,25 @@
+package parkinglot;
+
+import java.util.Random;
+
+public class ParkingMeter {
+	private int timeLeft = 0;
+	
+	public ParkingMeter() {
+		timeLeft = (((new Random()).nextInt(20))+1)*5; //pay for up to 100 minutes in increments of 5
+	}
+	
+	public boolean isExpired() {
+		return timeLeft < 0;
+	}
+	
+	public String getFine() {
+		if (timeLeft > -60) return "$25"; //
+		int fine = 25 + (-10) * ((timeLeft+5) / 60);
+		return "$" + fine;
+	}
+	
+	public void remove(int x) {
+		timeLeft -= x;
+	}
+}
